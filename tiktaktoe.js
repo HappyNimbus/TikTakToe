@@ -1,3 +1,20 @@
+let startGame;
+
+const startBtn = document.getElementById("start-btn");
+const startScreen = document.getElementById("start-screen");
+const game = document.getElementById("game");
+
+startBtn.addEventListener("click", () => {
+  const p1 = document.getElementById("player1").value || "Player X";
+  const p2 = document.getElementById("player2").value || "Player O";
+
+  startScreen.remove("hidden");
+  game.classList.remove("hidden");
+
+  startGame = GameController(p1, p2);
+});
+
+
 function Player(name, mark){
 
     return{name, mark};
@@ -19,19 +36,20 @@ function GameLogic(board) {
 }
 
 
-function GameController(){
+function GameController(p1, p2){
     const board = GameBoard();
-    board.createBoard(3,3);
+    board.createBoard(3, 3);
 
     const logic = GameLogic(board.getBoard());
 
-    const player1 = Player('Max', 'X');
-    const player2 = Player('Yvonne', 'O');
+    const player1 = Player(p1, 'X');
+    const player2 = Player(p2, 'O');
 
     let currentPlayer = player1;
     let gameOver = false;
-    console.log(`Game start: ${currentPlayer.name} goes first`);
-    console.log(board.getBoard());
+
+    const pTurn = document.getElementById("p-turn");
+    pTurn.textContent = currentPlayer.name;
 
     const playerTurn = (row, col) =>{
         if (gameOver) return;
@@ -51,17 +69,29 @@ function GameController(){
             return;
         }
 
-        console.log(board.getBoard());
         currentPlayer = currentPlayer === player1 ? player2 : player1;
+        pTurn.textContent = currentPlayer.name;
     };
 
-    return { playerTurn, getBoard: board.getBoard};
+    const squares = document.querySelectorAll(".section");
+
+    squares.forEach((square, index) => {
+    const row = Math.floor(index / 3);
+    const col = index % 3;
+
+    square.addEventListener("click", () => {
+        
+        square.textContent = currentPlayer.mark;
+        playerTurn(row, col);
+        
+        });
+    });
+
+    return { playerTurn};
 }
 
 
-
 function GameBoard(){
-
     const board = [];
 
     const createBoard = (rows, cols) =>{
@@ -86,9 +116,3 @@ function GameBoard(){
     }
     return {createBoard, getBoard, placeMarker};
 }
-
-
-const game = GameController();
-game.playerTurn(0,1);
-game.playerTurn(1,2);
-
