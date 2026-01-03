@@ -1,0 +1,103 @@
+*{
+  line-height: 1.625;
+  font-family: Nunito, sans-serif;
+}
+
+h1{
+    display: flex;
+    justify-self: center;
+}
+.container{
+    display: flex;
+    height: 500px;
+    border: 3px solid black;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    opacity: 30%;
+}
+.grid-container{
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px;
+    gap: 20px;
+    border-radius: 20px;
+}
+
+.section{
+    border: 2px solid black;
+    opacity: 30%;
+}
+
+.section:hover{
+    cursor: pointer;
+}
+
+.player{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.player1, .player2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.turn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px
+}
+
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Nunito, sans-serif;
+}
+
+p{
+    font-weight: 700;
+}
+button{
+    border: none;
+    padding: 12px 40px;
+    font-size: 16px;
+    background-color: green;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+    outline: none;
+}
+
+button:hover{
+    cursor: pointer;
+}
+button:active{
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+.hidden {
+  display: none;
+}
+
+#start-screen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+
+
